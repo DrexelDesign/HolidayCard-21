@@ -7,7 +7,7 @@ gsap.set("#cabin-scene",{transformOrigin:"80% 50%"});
 
 
 var audio = new Audio('audio/cardMusic.mp3');
-audio.play();
+// audio.play();
 
 const mainTl = new gsap.timeline();
 
