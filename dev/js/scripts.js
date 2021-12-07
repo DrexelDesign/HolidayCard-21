@@ -22,19 +22,20 @@ function scaleHouse(){
     .from("#middle-in-front-of",{duration: 10, ease:"none", y:"+=300"},"zoom")
     .from("#house-hill",{duration: 10, ease:"none", y:"+=300"},"zoom")
     .from("#center",{duration: 10, ease:"none", y:"+=350"},"zoom")
-    .from("#background-mountains",{duration: 10, ease:"none", y:"+=400"},"zoom");
+    .from("#background-mountains",{duration: 10, ease:"none", y:"+=400"},"zoom")
+    .from("#bg",{duration: 10, ease:"none", scaleY:2},"zoom");
     return tl
 }
 
 function zoomHouse(){
     const tl = new gsap.timeline();
-    tl.to("#cabin-scene",{duration:10, ease:"none", scale:50, y:"-=500", x:"-=500"},"zoom");
+    tl.to("#cabin-scene",{duration:20, ease:"none", scale:70, y:"-=800", x:"-=600"},"zoom");
     return tl
 }
 
 function fadeOutHouse(){
     const tl = new gsap.timeline();
-    tl.to("#cabin-scene",{duration:1, alpha:0})
+    tl.to("#cabin-scene",{duration:5, alpha:0})
     .to(".snow",{duration:0.25, alpha:0});
     return tl
 }
@@ -42,7 +43,7 @@ function fadeOutHouse(){
 mainTl.add(scaleWindow(),"scaleFirst")
 .add(scaleHouse(),"scaleFirst")
 .add(zoomHouse())
-.add(fadeOutHouse(),"-=1");
+.add(fadeOutHouse(),"-=15");
 
 GSDevTools.create();
 
