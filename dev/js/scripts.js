@@ -12,8 +12,8 @@ gsap.set("#cabin-scene",{transformOrigin:"80% 50%"});
 gsap.set("#bg",{scaleY:2});
 
 
-// var audio = new Audio('audio/cardMusic.mp3');
-// audio.play();
+var audio = new Audio('audio/cardMusic.mp3');
+audio.play();
 
 const mainTl = new gsap.timeline();
 
@@ -59,13 +59,13 @@ function zoomIn(){
     tl.to("#front-left",{duration: 4, ease:"none", y:"+=800", scale:2.5,transformOrigin:"center"},"zoom")
     .to("#front-right",{duration: 4, ease:"none", y:"+=800", scale:2.5,transformOrigin:"center"},"zoom")
     .to("#middle-in-front-of",{duration: 4, ease:"none", y:"+=850", scale:2.5,transformOrigin:"center"},"zoom")
-    .to("#house-hill",{duration: 8, ease:"none", y:"+=800", scale:50,transformOrigin:"center", x:"-=1500"},"zoom")
+    .to("#house-hill",{duration: 8, ease:"none", y:"+=200", scale:10,transformOrigin:"center", x:"-=500"},"zoom")
     .to("#chimney-main",{duration: 1, alpha:0},"zoom")
     .to("#center",{duration: 8, ease:"none", y:"+=400", scale:2,transformOrigin:"center"},"zoom")
     .to("#background-mountains",{duration: 8, ease:"none", y:"+=200", scale:1.5,transformOrigin:"center"},"zoom")
-    .to(".background",{duration: 2, ease:"none", alpha:0},"-=6")
+    // .to(".background",{duration: 2, ease:"none", alpha:0},"-=6")
     .to(".snow",{duration:0.25, alpha:0},"-=2")
-    .to("#house-hill",{duration: 1, ease:"none", scale:100,transformOrigin:"center", y:"+=1000", x:"-=1000" },"fade")
+    .to("#house-hill",{duration: 1, ease:"none", scale:100,transformOrigin:"center", y:"+=1200", x:"-=2000" },"fade")
     .to("#cabin-scene",{duration: 1, alpha:0},"fade")
     return tl;
 }
@@ -132,9 +132,13 @@ function smallFlame(){
 function message(){
     const tl = new gsap.timeline();
     tl.from("#message",{duration:1,alpha:0})
-    .from(".content",{duration:1,alpha:0, stagger:0.5, y:"+=100"});
+    .from(".content",{duration:1,alpha:0, stagger:0.5, y:"+=100", onComplete:stopSound});
     
     return tl;
+}
+
+function stopSound(){
+    audio.pause();
 }
 
 
