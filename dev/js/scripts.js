@@ -59,7 +59,9 @@ function zoomIn(){
     .to("#center",{duration: 8, ease:"none", y:"+=400", scale:2,transformOrigin:"center"},"zoom")
     .to("#background-mountains",{duration: 8, ease:"none", y:"+=200", scale:1.5,transformOrigin:"center"},"zoom")
     .to(".background",{duration: 2, ease:"none", alpha:0},"-=6")
-    .to("#cabin-scene",{duration: 2, alpha:0},"-=2")
+    .to(".snow",{duration:0.25, alpha:0},"-=2")
+    .to("#house-hill",{duration: 1, ease:"none", scale:100,transformOrigin:"center", y:"+=1000", x:"-=1000" },"fade")
+    .to("#cabin-scene",{duration: 1, alpha:0},"fade")
     return tl;
 }
 
