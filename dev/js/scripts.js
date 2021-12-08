@@ -2,7 +2,10 @@ import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { GSDevTools } from "gsap/GSDevTools";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
-gsap.registerPlugin(GSDevTools,SplitText,DrawSVGPlugin);
+import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
+
+gsap.registerPlugin(GSDevTools,SplitText,DrawSVGPlugin,MorphSVGPlugin);
+MorphSVGPlugin.convertToPath("circle, rect, ellipse, line, polygon, polyline");
 
 gsap.set("#window-scene",{transformOrigin:"60% 40%"});
 gsap.set("#cabin-scene",{transformOrigin:"80% 50%"});
@@ -81,8 +84,49 @@ function lights(){
     const tl = new gsap.timeline();
     tl.from(".wire",{duration: 1, stagger:0.5, drawSVG:"0"},"lights")
     .from(".lights",{duration: 1, stagger:0.5, scale:0, transformOrigin:"center"},"lights")
-    .from("#glow",{duration: 1, alpha:0})
+    .to(".bulb",{duration: 0.05, stagger:0.015, fill:"#FFFB99"},"glow")
+    .from("#glow",{duration: 1, alpha:0},"glow")
     return tl;
+}
+fire1();
+
+function fire1(){
+    const tl = new gsap.timeline();
+    tl.to("#flame-1",{duration: 0.5, morphSVG:"#flame-2", fill:"#EA7C4D", ease:"none"})
+    .to("#flame-1",{duration: 0.5, morphSVG:"#flame-3", fill:"#EA7C4D", alpha:0.45, ease:"none"})
+    .to("#flame-1",{duration: 0.5, morphSVG:"#flame-4", fill:"#EA7C4D", alpha:0.20, ease:"none"})
+    .to("#flame-1",{duration: 0.25, alpha:0, ease:"none"})
+}
+setTimeout(fire2, 500);
+function fire2(){
+    const tl = new gsap.timeline({repeat:-1});
+    tl.to("#flame-1-2",{duration: 0.5, morphSVG:"#flame-2-2", fill:"#EA7C4D", ease:"none"})
+    .to("#flame-1-2",{duration: 0.5, morphSVG:"#flame-3-2", fill:"#EA7C4D", alpha:0.45, ease:"none"})
+    .to("#flame-1-2",{duration: 0.5, morphSVG:"#flame-4-2", fill:"#EA7C4D", alpha:0.20, ease:"none"})
+    .to("#flame-1-2",{duration: 0.25, alpha:0, ease:"none"})
+}
+
+setTimeout(fire3, 1000);
+function fire3(){
+    const tl = new gsap.timeline({repeat:-1});
+    tl.to("#flame-1-3",{duration: 0.5, morphSVG:"#flame-2-3", fill:"#EA7C4D", ease:"none"})
+    .to("#flame-1-3",{duration: 0.5, morphSVG:"#flame-3-3", fill:"#EA7C4D", alpha:0.45, ease:"none"})
+    .to("#flame-1-3",{duration: 0.5, morphSVG:"#flame-4-3", fill:"#EA7C4D", alpha:0.20, ease:"none"})
+    .to("#flame-1-3",{duration: 0.25, alpha:0, ease:"none"})
+}
+
+setTimeout(fire4, 1500);
+function fire4(){
+    const tl = new gsap.timeline({repeat:-1});
+    tl.to("#flame-1-4",{duration: 0.5, morphSVG:"#flame-2-4", fill:"#EA7C4D", ease:"none"})
+    .to("#flame-1-4",{duration: 0.5, morphSVG:"#flame-3-4", fill:"#EA7C4D", alpha:0.45, ease:"none"})
+    .to("#flame-1-4",{duration: 0.5, morphSVG:"#flame-4-4", fill:"#EA7C4D", alpha:0.20, ease:"none"})
+    .to("#flame-1-4",{duration: 0.25, alpha:0, ease:"none"})
+}
+smallFlame();
+function smallFlame(){
+    const tl = new gsap.timeline({repeat:-1});
+    tl.fromTo(".small",{y:"+=10", scale:0.25, transformOrigin:"center bottom", alpha:0.25},{duration:1, y:"-=100", stagger:0.25, alpha:0, scale:0.5});
 }
 
 
@@ -91,7 +135,6 @@ mainTl.add(scaleWindow(),"zoom")
 .add(majorAniIn(),"-=50%")
 .add(majorAniOut(),"+=50%")
 .add(zoomIn(),"fire")
-// .add(firePlace(),"fire")
 .add(popcorn(),"room")
 .add(lights(),"room")
 

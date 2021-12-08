@@ -461,6 +461,10 @@ textarea {
 #card-container > div #majors ul li:nth-child(even) {
   color: #1E3768;
 }
+#card-container > div .flame {
+  display: none;
+}
+
 @keyframes smoke {
   0% {
     opacity: 1;
