@@ -6,6 +6,8 @@ gsap.registerPlugin(GSDevTools,SplitText);
 gsap.set("#window-scene",{transformOrigin:"60% 40%"});
 gsap.set("#cabin-scene",{transformOrigin:"80% 50%"});
 gsap.set("#bg",{scaleY:2});
+// gsap.set("#chimney-main",{alpha:0});
+
 
 
 // var audio = new Audio('audio/cardMusic.mp3');
@@ -28,6 +30,7 @@ function scaleOutside(){
     .from("#house-hill",{duration: 5,  y:"+=250"},"zoom")
     .from("#center",{duration: 5,  y:"+=300"},"zoom")
     .from("#background-mountains",{duration: 5,  y:"+=300"},"zoom")
+    .from("#chimney-main",{duration: 5, alpha:0, y:"+=150"},"-=4");
     // .from("#bg",{duration: 20, scaleY:2},"zoom");
     return tl;
 }

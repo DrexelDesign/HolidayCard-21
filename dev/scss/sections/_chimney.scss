@@ -1,0 +1,46 @@
+@keyframes smoke {
+	0% {opacity:1; border-radius:50%; transform:scale(1)}
+    80% {transform:translate3d(40px,-150px,0px) rotate(20deg) skew(-30deg) scale(2); -webkit-filter:blur(5px); -moz-filter:blur(5px); -ms-filter:blur(5px); -o-filter:blur(5px); border-radius:50%;}
+    100% {opacity:0;}
+}
+
+@-webkit-keyframes smoke {
+    0% {opacity:1; border-radius:50%; transform:scale(1)}
+    80% {transform:translate3d(40px,-150px,0px) rotate(20deg) skew(-30deg) scale(2); -webkit-filter:blur(5px); -moz-filter:blur(5px); -ms-filter:blur(5px); -o-filter:blur(5px); border-radius:50%;}
+    100% {opacity:0;}
+}
+body {margin:0; padding:0; background-color:black; overflow:hidden;}
+
+#box {background:#8ba9c9;
+	background:-moz-linear-gradient(-45deg, #8ba9c9 0%,#ab9fc6 84%,#ab9fc6 100%);
+	background:-webkit-gradient(left top, right bottom, color-stop(0%, #8ba9c9), color-stop(84%,#ab9fc6), color-stop(100%,#ab9fc6));
+	background:-webkit-linear-gradient(-45deg, #8ba9c9 0%,#ab9fc6 84%,#ab9fc6 100%);
+	background:-o-linear-gradient(-45deg, #8ba9c9 0%,#ab9fc6 84%,#ab9fc6 100%);
+	background:-ms-linear-gradient(-45deg, #8ba9c9 0%,#ab9fc6 84%,#ab9fc6 100%);
+	background:linear-gradient(135deg, #8ba9c9 0%,#ab9fc6 84%,#ab9fc6 100%); border:1px dotted whitesmoke;
+	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a90c7', endColorstr='#8f5dda', GradientType=1 );     		    height:100vh; margin:0; width:100%;}
+
+#chimney-main {top:450px; position:absolute; right:410px;}
+
+// #chimney {background:#ffffff; border:1px solid #000000; border-top-width:40px; border-radius:2px 2px 0 0; height:200px; left:10%; top:0; position:absolute; width:30px;}
+
+#chimney-smoke-box {height:50px; left:5px; top:0; position:absolute; width:20px;}
+
+.chimney-smoke {animation:smoke 3.5s infinite ease-out; -webkit-animation:smoke 3.5s infinite ease-out;
+	background:#2c2c2c;
+	background:-webkit-repeating-linear-gradient(90deg, transparent 0%, #2c2c2c 50%);
+	background:-o-repeating-linear-gradient(90deg, transparent 0%, #2c2c2c 50%);
+	background:-moz-repeating-linear-gradient(90deg, transparent 0%, #2c2c2c 50%);
+	background:repeating-linear-gradient(90deg, transparent 0%, #2c2c2c 50%);
+	-webkit-filter:blur(4px);
+	-moz-filter:blur(4px);
+	-ms-filter:blur(4px);
+	-o-filter:blur(4px);
+	filter:blur(4px);
+	height:100%; position:relative; width:100%;}
+
+#chimney-smoke2 {top:-55px; animation-delay:0.5s;}
+#chimney-smoke3 {top:-105px; animation-delay:1s;}
+#chimney-smoke4 {top:-155px; animation-delay:1.5s;}
+#chimney-smoke5 {top:-205px; animation-delay:2.5s;}
+#chimney-smoke6 {top:-255px; animation-delay:3s;}
