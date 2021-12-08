@@ -94,9 +94,8 @@ function moveSnow() {
 for (var i = 0; i <= snowMax; i++) {
 	document.write("<span class='snow' id='flake" + i + "' style='" + snowStyles + "position:absolute;top:-" + snowMaxSize + "'>" + snowEntity + "</span>");
 }
-
 function startSnow(){
-	setTimeout(initSnow, 1500);
+	initSnow();
 }
 
 window.addEventListener('resize', resize);

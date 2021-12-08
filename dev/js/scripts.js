@@ -10,12 +10,14 @@ MorphSVGPlugin.convertToPath("circle, rect, ellipse, line, polygon, polyline");
 gsap.set("#window-scene",{transformOrigin:"60% 40%"});
 gsap.set("#cabin-scene",{transformOrigin:"80% 50%"});
 gsap.set("#bg",{scaleY:2});
+gsap.set(".snow",{alpha: 0});
 
 
 var audio = new Audio('audio/cardMusic.mp3');
-audio.play();
+
 
 const mainTl = new gsap.timeline();
+mainTl.pause();
 
 function scaleWindow(){
     const tl = new gsap.timeline();
@@ -63,8 +65,7 @@ function zoomIn(){
     .to("#chimney-main",{duration: 1, alpha:0},"zoom")
     .to("#center",{duration: 8, ease:"none", y:"+=400", scale:2,transformOrigin:"center"},"zoom")
     .to("#background-mountains",{duration: 8, ease:"none", y:"+=200", scale:1.5,transformOrigin:"center"},"zoom")
-    // .to(".background",{duration: 2, ease:"none", alpha:0},"-=6")
-    .to(".snow",{duration:0.25, alpha:0},"-=2")
+    .to(".snow",{duration:1, alpha:0},"-=2")
     .to("#house-hill",{duration: 1, ease:"none", scale:100,transformOrigin:"center", y:"+=1200", x:"-=2000" },"fade")
     .to("#cabin-scene",{duration: 1, alpha:0},"fade")
     return tl;
@@ -82,8 +83,8 @@ function popcorn(){
 
 function lights(){
     const tl = new gsap.timeline();
-    tl.from(".wire",{duration: 1, stagger:0.5, drawSVG:"0"},"lights")
-    .from(".lights",{duration: 1, stagger:0.5, scale:0, transformOrigin:"center"},"lights")
+    tl.from(".wire",{duration: 0.5, stagger:0.25, drawSVG:"0"},"lights")
+    .from(".lights",{duration: 0.25, stagger:0.12, scale:0, transformOrigin:"center"},"lights")
     .to(".bulb",{duration: 0.05, stagger:0.015, fill:"#FFFB99"},"glow")
     .from("#glow",{duration: 1, alpha:0},"glow")
     return tl;
@@ -132,13 +133,9 @@ function smallFlame(){
 function message(){
     const tl = new gsap.timeline();
     tl.from("#message",{duration:1,alpha:0})
-    .from(".content",{duration:1,alpha:0, stagger:0.5, y:"+=100", onComplete:stopSound});
+    .from(".content",{duration:1,alpha:0, stagger:0.5, y:"+=100"});
     
     return tl;
-}
-
-function stopSound(){
-    audio.pause();
 }
 
 
@@ -149,7 +146,15 @@ mainTl.add(scaleWindow(),"zoom")
 .add(zoomIn(),"fire")
 .add(popcorn(),"room")
 .add(lights(),"room")
-.add(message())
+.add(message());
 
-GSDevTools.create();
+function startAnimation(){
+    mainTl.play();
+    mainTl.delay(1);
+    audio.play();
+    gsap.to(".snow",{duration:2, alpha: 1, delay:1.5});
+}
 
+
+// GSDevTools.create();
+document.getElementById("button").onclick = startAnimation;
