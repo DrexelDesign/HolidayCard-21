@@ -436,6 +436,30 @@ textarea {
   grid-area: card;
   position: relative;
 }
+#card-container > div #message {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding-top: 8vh;
+}
+#card-container > div #message h1 {
+  font-family: "Dosis", sans-serif;
+  font-size: 6.25rem;
+  font-weight: 300;
+}
+#card-container > div #message p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.25rem;
+  line-height: 25px;
+  margin-top: 20px;
+}
+#card-container > div #message img {
+  margin-top: 45vh;
+  width: 20%;
+}
 #card-container > div #majors {
   position: absolute;
   width: 100%;

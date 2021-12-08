@@ -91,7 +91,7 @@ function lights(){
 fire1();
 
 function fire1(){
-    const tl = new gsap.timeline();
+    const tl = new gsap.timeline({repeat:-1});
     tl.to("#flame-1",{duration: 0.5, morphSVG:"#flame-2", fill:"#EA7C4D", ease:"none"})
     .to("#flame-1",{duration: 0.5, morphSVG:"#flame-3", fill:"#EA7C4D", alpha:0.45, ease:"none"})
     .to("#flame-1",{duration: 0.5, morphSVG:"#flame-4", fill:"#EA7C4D", alpha:0.20, ease:"none"})
@@ -129,6 +129,14 @@ function smallFlame(){
     tl.fromTo(".small",{y:"+=10", scale:0.25, transformOrigin:"center bottom", alpha:0.25},{duration:1, y:"-=100", stagger:0.25, alpha:0, scale:0.5});
 }
 
+function message(){
+    const tl = new gsap.timeline();
+    tl.from("#message",{duration:1,alpha:0})
+    .from(".content",{duration:1,alpha:0, stagger:0.5, y:"+=100"});
+    
+    return tl;
+}
+
 
 mainTl.add(scaleWindow(),"zoom")
 .add(scaleOutside(),"zoom")
@@ -137,6 +145,7 @@ mainTl.add(scaleWindow(),"zoom")
 .add(zoomIn(),"fire")
 .add(popcorn(),"room")
 .add(lights(),"room")
+.add(message())
 
 GSDevTools.create();
 
