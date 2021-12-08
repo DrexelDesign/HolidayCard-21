@@ -435,6 +435,15 @@ textarea {
 #card-container > div {
   grid-area: card;
   position: relative;
+  height: 100%;
+  width: 100%;
+}
+#card-container > div #snow-container {
+  overflow: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
 }
 #card-container > div #message {
   position: absolute;

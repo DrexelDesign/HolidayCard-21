@@ -10,14 +10,12 @@ MorphSVGPlugin.convertToPath("circle, rect, ellipse, line, polygon, polyline");
 gsap.set("#window-scene",{transformOrigin:"60% 40%"});
 gsap.set("#cabin-scene",{transformOrigin:"80% 50%"});
 gsap.set("#bg",{scaleY:2});
-gsap.set(".snow",{alpha: 0});
-
+gsap.set("#snow-container",{alpha: 0});
 
 var audio = new Audio('audio/cardMusic.mp3');
 
-
 const mainTl = new gsap.timeline();
-mainTl.pause();
+// mainTl.pause();
 
 function scaleWindow(){
     const tl = new gsap.timeline();
@@ -65,9 +63,9 @@ function zoomIn(){
     .to("#chimney-main",{duration: 1, alpha:0},"zoom")
     .to("#center",{duration: 8, ease:"none", y:"+=400", scale:2,transformOrigin:"center"},"zoom")
     .to("#background-mountains",{duration: 8, ease:"none", y:"+=200", scale:1.5,transformOrigin:"center"},"zoom")
-    .to(".snow",{duration:1, alpha:0},"-=2")
+    .to(".snow",{duration:1, alpha:0, ease:"none"},"-=2")
     .to("#house-hill",{duration: 1, ease:"none", scale:100,transformOrigin:"center", y:"+=1200", x:"-=2000" },"fade")
-    .to("#cabin-scene",{duration: 1, alpha:0},"fade")
+    .to("#cabin-scene",{duration: 1, alpha:0, ease:"none"},"fade")
     return tl;
 }
 
@@ -75,7 +73,7 @@ function popcorn(){
     gsap.set("#leaf-clip-right",{transformOrigin:"left center"});
     gsap.set("#leaf-clip-left",{transformOrigin:"right center"});
     const tl = new gsap.timeline();
-    tl.from(".pop",{duration: 0.25, alpha:0, stagger:-0.15})
+    tl.from(".pop",{duration: 0.15, alpha:0, stagger:-0.08})
     .from("#leaf-clip-right",{duration: 0.5, scale:0},"grow")
     .from("#leaf-clip-left",{duration: 0.5, scale:0},"grow")
     return tl;
@@ -139,6 +137,38 @@ function message(){
 }
 
 
+function bigCandle (){
+    const tl = new gsap.timeline({repeat:-1});
+    tl.from("#light_2", {duration: .15, opacity: 1})
+    tl.from("#light_2", {duration: .15, opacity:.55})
+    tl.from("#light_2", {duration: .15, opacity:.10})
+    tl.from("#light_2", {duration: .15, opacity:.40})
+    tl.from("#light_2", {duration: .15, opacity:.75})
+    tl.from("#light_2", {duration: .15, opacity:.90})
+    tl.from("#light_2", {duration: .15, opacity:.65})
+    tl.from("#light_2", {duration: .15, opacity:.25})
+    tl.from("#light_2", {duration: .15, opacity:.45})
+    tl.from("#light_2", {duration: .15, opacity:.15})
+    tl.from("#light_2", {duration: .15, opacity: 1})
+    return tl;
+}
+
+function littleCandle(){
+    const tl = new gsap.timeline({repeat: -1});
+    tl.from("#light", {duration: .15, opacity: 1})
+    tl.from("#light", {duration: .15, opacity:.65})
+    tl.from("#light", {duration: .15, opacity:.85})
+    tl.from("#light", {duration: .15, opacity:.2})
+    tl.from("#light", {duration: .15, opacity:.15})
+    tl.from("#light", {duration: .15, opacity:.90})
+    tl.from("#light", {duration: .15, opacity:.35})
+    tl.from("#light", {duration: .15, opacity:.55})
+    tl.from("#light", {duration: .15, opacity:.45})
+    tl.from("#light", {duration: .15, opacity:.65})
+    tl.from("#light", {duration: .15, opacity: 1})
+    return tl;
+}
+
 mainTl.add(scaleWindow(),"zoom")
 .add(scaleOutside(),"zoom")
 .add(majorAniIn(),"-=50%")
@@ -146,15 +176,18 @@ mainTl.add(scaleWindow(),"zoom")
 .add(zoomIn(),"fire")
 .add(popcorn(),"room")
 .add(lights(),"room")
-.add(message());
+.add(bigCandle(),"room")
+.add(littleCandle(),"room")
+.add(message(),"+=2");
 
 function startAnimation(){
     mainTl.play();
     mainTl.delay(1);
     audio.play();
-    gsap.to(".snow",{duration:2, alpha: 1, delay:1.5});
+    gsap.to("#snow-container",{duration:2, alpha: 1, delay:1.5});
 }
 
+GSDevTools.create();
 
-// GSDevTools.create();
-document.getElementById("button").onclick = startAnimation;
+startAnimation();
+// document.getElementById("button").onclick = startAnimation;
