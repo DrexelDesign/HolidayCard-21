@@ -8,7 +8,7 @@ gsap.set("#cabin-scene",{transformOrigin:"80% 50%"});
 gsap.set("#bg",{scaleY:2});
 
 
-var audio = new Audio('audio/cardMusic.mp3');
+// var audio = new Audio('audio/cardMusic.mp3');
 // audio.play();
 
 const mainTl = new gsap.timeline();
@@ -42,11 +42,11 @@ function majorAniIn(){
 }
 
 function majorAniOut(){
-    var splitMajors = new SplitText("#majors li",{type: "words"}),
-    chars = splitMajors.chars; 
+    var splitMajors = new SplitText("#majors li",{type: "lines"}),
+    lines = splitMajors.lines; 
     const tl = new gsap.timeline();
-    tl.to(chars,{duration:0.5, y:"+=50", stagger:-0.01, alpha:0})
-    .to("#majors",{duration:0.5, scale:0, alpha:0, xPercent:-50, yPercent:-50});
+    tl.to(lines,{duration:0.5, y:"+=50", stagger:-0.01, alpha:0})
+    .to("#majors",{duration:0.5, alpha:0},"-=50%");
     return tl;
 }
 
@@ -82,7 +82,7 @@ function majorAniOut(){
 mainTl.add(scaleWindow(),"zoom")
 .add(scaleOutside(),"zoom")
 .add(majorAniIn(),"-=50%")
-.add(majorAniOut());
+.add(majorAniOut(),"+=50%");
 // .add(scaleHouse(),"scaleFirst")
 // .add(zoomHouse())
 // .add(fadeOutHouse(),"-=15");
