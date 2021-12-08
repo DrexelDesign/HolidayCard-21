@@ -88,6 +88,14 @@
       "oAP" : "\/dev\/content\/card.html",
       "oF" : 0
     },
+    "\/dev\/content\/fireplace.kit" : {
+      "cB" : 0,
+      "ft" : 2048,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/dev\/content\/fireplace.html",
+      "oF" : 0
+    },
     "\/dev\/global\/head.kit" : {
       "cB" : 0,
       "ft" : 2048,

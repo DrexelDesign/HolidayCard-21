@@ -1,7 +1,8 @@
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { GSDevTools } from "gsap/GSDevTools";
-gsap.registerPlugin(GSDevTools,SplitText);
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+gsap.registerPlugin(GSDevTools,SplitText,DrawSVGPlugin);
 
 gsap.set("#window-scene",{transformOrigin:"60% 40%"});
 gsap.set("#cabin-scene",{transformOrigin:"80% 50%"});
@@ -56,6 +57,7 @@ function zoomIn(){
     .to("#front-right",{duration: 4, ease:"none", y:"+=800", scale:2.5,transformOrigin:"center"},"zoom")
     .to("#middle-in-front-of",{duration: 4, ease:"none", y:"+=850", scale:2.5,transformOrigin:"center"},"zoom")
     .to("#house-hill",{duration: 8, ease:"none", y:"+=800", scale:50,transformOrigin:"center", x:"-=1500"},"zoom")
+    .to("#chimney-main",{duration: 1, alpha:0},"zoom")
     .to("#center",{duration: 8, ease:"none", y:"+=400", scale:2,transformOrigin:"center"},"zoom")
     .to("#background-mountains",{duration: 8, ease:"none", y:"+=200", scale:1.5,transformOrigin:"center"},"zoom")
     .to(".background",{duration: 2, ease:"none", alpha:0},"-=6")
@@ -65,40 +67,29 @@ function zoomIn(){
     return tl;
 }
 
+function popcorn(){
+    const tl = new gsap.timeline();
+    tl.from(".pop",{duration: 0.25, alpha:0, stagger:-0.15})
+    return tl;
+}
 
+function lights(){
+    const tl = new gsap.timeline();
+    tl.from(".wire",{duration: 1, stagger:0.5, drawSVG:"0"},"lights")
+    .from(".lights",{duration: 1, stagger:0.5, scale:0, transformOrigin:"center"},"lights")
+    .from("#glow",{duration: 1, alpha:0})
+    return tl;
+}
 
-
-// function scaleHouse(){
-//     const tl = new gsap.timeline();
-//     tl.to("#cabin-scene",{duration:60, ease:"none", scale:10},"zoom")
-//     .from("#front-left",{duration: 10, ease:"none", y:"+=200"},"zoom")
-//     .from("#front-right",{duration: 10, ease:"none", y:"+=200"},"zoom")
-//     .from("#middle-in-front-of",{duration: 10, ease:"none", y:"+=300"},"zoom")
-//     .from("#house-hill",{duration: 10, ease:"none", y:"+=300"},"zoom")
-//     .from("#center",{duration: 10, ease:"none", y:"+=350"},"zoom")
-//     .from("#background-mountains",{duration: 10, ease:"none", y:"+=400"},"zoom")
-//     .from("#bg",{duration: 20, ease:"none", scaleY:2},"zoom");
-//     return tl;
-// }
-
-// function zoomHouse(){
-//     const tl = new gsap.timeline();
-//     tl.to("#cabin-scene",{duration:20, ease:"none", scale:70, y:"-=800", x:"-=600"},"zoom");
-//     return tl
-// }
-
-// function fadeOutHouse(){
-//     const tl = new gsap.timeline();
-//     tl.to("#cabin-scene",{duration:5, alpha:0})
-//     .to(".snow",{duration:0.25, alpha:0});
-//     return tl
-// }
 
 mainTl.add(scaleWindow(),"zoom")
 .add(scaleOutside(),"zoom")
 .add(majorAniIn(),"-=50%")
 .add(majorAniOut(),"+=50%")
-.add(zoomIn());
+.add(zoomIn(),"fire")
+// .add(firePlace(),"fire")
+.add(popcorn(),"room")
+.add(lights(),"room");
 
 GSDevTools.create();
 
