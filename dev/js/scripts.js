@@ -68,8 +68,12 @@ function zoomIn(){
 }
 
 function popcorn(){
+    gsap.set("#leaf-clip-right",{transformOrigin:"left center"});
+    gsap.set("#leaf-clip-left",{transformOrigin:"right center"});
     const tl = new gsap.timeline();
     tl.from(".pop",{duration: 0.25, alpha:0, stagger:-0.15})
+    .from("#leaf-clip-right",{duration: 0.5, scale:0},"grow")
+    .from("#leaf-clip-left",{duration: 0.5, scale:0},"grow")
     return tl;
 }
 
@@ -89,7 +93,7 @@ mainTl.add(scaleWindow(),"zoom")
 .add(zoomIn(),"fire")
 // .add(firePlace(),"fire")
 .add(popcorn(),"room")
-.add(lights(),"room");
+.add(lights(),"room")
 
 GSDevTools.create();
 
