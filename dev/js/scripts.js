@@ -15,7 +15,7 @@ gsap.set("#snow-container",{alpha: 0});
 var audio = new Audio('audio/cardMusic.mp3');
 
 const mainTl = new gsap.timeline();
-// mainTl.pause();
+mainTl.pause();
 
 function scaleWindow(){
     const tl = new gsap.timeline();
@@ -170,7 +170,7 @@ function littleCandle(){
 }
 
 mainTl.add(scaleWindow(),"zoom")
-.add(scaleOutside(),"zoom")
+.add(scaleOutside(),"zoom") 
 .add(majorAniIn(),"-=50%")
 .add(majorAniOut(),"+=50%")
 .add(zoomIn(),"fire")
@@ -183,11 +183,11 @@ mainTl.add(scaleWindow(),"zoom")
 function startAnimation(){
     mainTl.play();
     mainTl.delay(1);
-    audio.play();
+    // audio.play();
     gsap.to("#snow-container",{duration:2, alpha: 1, delay:1.5});
 }
 
 GSDevTools.create();
 
-startAnimation();
-// document.getElementById("button").onclick = startAnimation;
+// startAnimation();
+document.getElementById("button").onclick = startAnimation;

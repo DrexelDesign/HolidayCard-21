@@ -455,18 +455,18 @@ textarea {
   padding-top: 8vh;
 }
 #card-container > div #message h1 {
-  font-family: "Dosis", sans-serif;
+  font-family: futura-pt-condensed, sans-serif;
   font-size: 6.25rem;
   font-weight: 300;
 }
 #card-container > div #message p {
   font-family: "Open Sans", sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.5625rem;
   line-height: 25px;
   margin-top: 20px;
 }
 #card-container > div #message img {
-  margin-top: 45vh;
+  margin-top: 35vh;
   width: 20%;
 }
 #card-container > div #majors {
